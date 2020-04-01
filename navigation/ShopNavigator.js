@@ -16,6 +16,9 @@ const ProductsNavigator = createStackNavigator({
         headerStyle:{
             backgroundColor: Platform.OS === 'android' ? Colors.secondary : '#fff'
         },
+        headerTitleStyle:{
+            fontFamily:'abrilFatface'
+        },
         headerTintColor: Platform.OS === 'android' ? '#100' : Colors.secondary
     }
 });

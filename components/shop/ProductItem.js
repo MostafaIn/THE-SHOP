@@ -58,10 +58,12 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:18,
+        fontFamily:'lobster',
         marginVertical: 4
     },
     price:{
         fontSize:14,
+        fontFamily:'orbitron',
         color:'#888'
     },
     details:{
