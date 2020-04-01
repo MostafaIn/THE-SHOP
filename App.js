@@ -1,11 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import rootReducer from './store/reducers';
+
+import ShopNavigator from './navigation/ShopNavigator';
+
+const store = createStore(rootReducer)
+
 const App = () =>{
   return (
-    <View style={styles.container}>
-      <Text>The Basic Project Setup is ready!</Text>
-    </View>
+    <Provider store={store}>
+      <ShopNavigator />
+    </Provider>
   );
 };
 export default App;
