@@ -30,7 +30,7 @@ const App = () =>{
         onError={err => console.log(err)}
       />
   };
-  console.log(isFontLoaded)
+  // console.log(isFontLoaded)
   return (
     <Provider store={store}>
       <ShopNavigator />
