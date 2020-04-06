@@ -8,6 +8,7 @@ import Colors from '../../constants/colors';
 import CartItem from '../../components/shop/CartItem';
 
 import * as cartActions from '../../store/actions/cart';
+import * as ordersActions from '../../store/actions/orders';
 
 const CartScreen = () => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount)
@@ -26,7 +27,6 @@ const CartScreen = () => {
     });
     
     const dispatch = useDispatch();
-
     return (
         <View style={styles.screen}>
             <View style={styles.summary}>
@@ -37,6 +37,9 @@ const CartScreen = () => {
                     title="Order NOW"
                     color={Colors.secondary}
                     disabled={cartItems.length === 0}
+                    onPress={() =>{
+                        dispatch(ordersActions.addOrder(cartItems, cartTotalAmount))
+                    }}
                 />
             </View>
             <FlatList
@@ -51,7 +54,11 @@ const CartScreen = () => {
             />
         </View>
     )
-}
+};
+
+    CartScreen.navigationOptions ={
+        headerTitle: 'Your Cart'
+    }
 
 export default CartScreen
 
