@@ -14,15 +14,15 @@ const CartScreen = () => {
         for(let key in state.cart.items){
             transformedCartItems.push({
                 productId: key,
-                productTitle: state.cart.items[key].productTitle,
-                productPrice: state.cart.items[key].productPrice,
                 quantity: state.cart.items[key].quantity,
+                productPrice: state.cart.items[key].productPrice,
+                productTitle: state.cart.items[key].productTitle,
                 sum: state.cart.items[key].sum
             });
         }
         return transformedCartItems;
     });
-    console.log('Cart Items', cartItems)
+    // console.log('Cart Items', cartItems)
     return (
         <View style={styles.screen}>
             <View style={styles.summary}>

@@ -8,10 +8,10 @@ const CartItem = (props) => {
         <View style={styles.cartItem}>
             <Text style={styles.itemData}>
                 <Text style={styles.mainTxt}>{props.quantity} </Text>
-                <Text style={styles.mainTxt}>{props.title}</Text>
+                <Text style={styles.title}> {props.title}</Text>
             </Text>
             <View style={styles.itemData}>
-                {/* <Text style={styles.mainTxt}>${props.amount.toFixed(2)}</Text> */}
+                <Text style={styles.mainTxt}>$ {props.amount.toFixed(2)}</Text>
                 <TouchableOpacity style={styles.delBTN}>
                     <Ionicons 
                         name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
@@ -39,7 +39,12 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     mainTxt:{
-        fontFamily:'abrilFatface',
+        fontFamily:'orbitron',
+        fontSize:16,
+        color:'#777'
+    },
+    title:{
+        fontFamily:'orbitron',
         fontSize:16
     },
     delBTN:{
