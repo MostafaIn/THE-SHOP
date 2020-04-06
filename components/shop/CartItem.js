@@ -12,7 +12,7 @@ const CartItem = (props) => {
             </Text>
             <View style={styles.itemData}>
                 <Text style={styles.mainTxt}>$ {props.amount.toFixed(2)}</Text>
-                <TouchableOpacity style={styles.delBTN}>
+                <TouchableOpacity style={styles.delBTN} onPress={props.onRemove}>
                     <Ionicons 
                         name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
                         size={23}
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     cartItem:{
         padding:10,
         marginHorizontal:20,
-        backgroundColor:'#fff',
+        // backgroundColor:'#fff',
         flexDirection:'row',
         justifyContent:'space-between'
     },
