@@ -1,4 +1,4 @@
-import { DELETE_PRODUCT } from './types';
+import { DELETE_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT } from './types';
 
 export const deleteProduct = productId =>{
     return{
@@ -6,3 +6,27 @@ export const deleteProduct = productId =>{
         pid: productId
     }
 };
+
+export const createProduct = (title, imageUrl, description, price) =>{
+    return{
+        type: CREATE_PRODUCT,
+        productData:{
+            title,
+            imageUrl,
+            description,
+            price
+        }
+    }
+};
+
+export const updateProduct = (id, title, imageUrl, description) =>{
+    return{
+        type: UPDATE_PRODUCT,
+        pid: id,
+        productData:{
+            title,
+            imageUrl,
+            description
+        }
+    }
+}
