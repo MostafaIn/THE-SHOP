@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, Platform } from 'react-native'
+import { StyleSheet, Text, View, Button, FlatList, Platform } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,9 +10,19 @@ import * as cartActions from '../../store/actions/cart';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 
+import Colors from '../../constants/colors';
+
 const ProductsOverviewScreen = (props) => {
     const products = useSelector(state => state.products.availableProducts);
     const dispatch = useDispatch();
+
+    const selectItemHandler = (id, title) =>{
+        props.navigation.navigate('ProductDetail',{
+            productId: id,
+            productTitle: title
+        })
+    };
+
     // console.log(products);
     return (
         <FlatList
@@ -22,14 +32,17 @@ const ProductsOverviewScreen = (props) => {
                 image={itemData.item.imageUrl} 
                 title={itemData.item.title}
                 price={itemData.item.price}
-                onViewDetail={() => props.navigation.navigate('ProductDetail',{
-                    productId: itemData.item.id,
-                    productTitle: itemData.item.title
-                    })}
-                onAddToCart={() =>{
-                    dispatch(cartActions.addToCart(itemData.item))
-                }}
-                />}  
+                onSelect={() => selectItemHandler(itemData.item.id, itemData.item.title)}
+                >
+                    <Button 
+                        title="View Detials" 
+                        color={Colors.primary} 
+                        onPress={() => selectItemHandler(itemData.item.id, itemData.item.title)} 
+                    />
+                    <Button 
+                        title="To Cart" 
+                        onPress={() => dispatch(cartActions.addToCart(itemData.item)) } />   
+                </ProductItem>}  
         />
     )
 };
