@@ -1,4 +1,6 @@
-import { DELETE_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT } from './types';
+import { DELETE_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, SET_PRODUCT } from './types';
+
+import Product from '../../models/product';
 
 export const deleteProduct = productId =>{
     return{
@@ -48,4 +50,29 @@ export const updateProduct = (id, title, imageUrl, description) =>{
             description
         }
     }
-}
+};
+
+export const fetchProducts = () =>{
+    return async dispatch =>{
+        // any async code !!!
+        const response = await fetch('https://shop-rn-ed880.firebaseio.com/products.json');
+
+        const resData = await response.json();
+        const loadedProducts = [];
+
+        for(let key in resData){
+            loadedProducts.push(new Product(
+                key,
+                'u1',
+                resData[key].title,
+                resData[key].imageUrl,
+                resData[key].description,
+                resData[key].price
+            ))
+        }
+        dispatch({
+            type: SET_PRODUCT,
+            products: loadedProducts
+        })
+    }
+};
