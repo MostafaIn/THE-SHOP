@@ -5,7 +5,7 @@ import PRODUCTS from '../../data/dummy-data';
 import Product from '../../models/product';
 
 const initialState ={
-    availableProducts: PRODUCTS,
+    availableProducts: null,
     userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1')
 };
 
@@ -14,7 +14,7 @@ const products = (state = initialState, action) =>{
         case SET_PRODUCT:
             return{
                 availableProducts: action.products,
-                userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1')
+                userProducts: action.products.filter(prod => prod.ownerId === 'u1')
             }
         case CREATE_PRODUCT:
             const newProduct = new Product(

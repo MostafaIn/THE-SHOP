@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { StyleSheet, Text, View, Button, FlatList, Platform } from 'react-native'
+import React, {useEffect, useState} from 'react'
+import { StyleSheet, Text, View, Button, FlatList, Platform, ActivityIndicator } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -14,11 +14,17 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import Colors from '../../constants/colors';
 
 const ProductsOverviewScreen = (props) => {
+    const [isLoading, setisLoading] = useState(false)
     const products = useSelector(state => state.products.availableProducts);
     const dispatch = useDispatch();
 
     useEffect(() => {
-       dispatch(productsAtions.fetchProducts())
+        const loadProducts = async () =>{
+            setisLoading(true);
+           await dispatch(productsAtions.fetchProducts());
+            setisLoading(false)
+        };
+        loadProducts();
     }, [dispatch])
 
     const selectItemHandler = (id, title) =>{
@@ -27,6 +33,12 @@ const ProductsOverviewScreen = (props) => {
             productTitle: title
         })
     };
+
+    if(isLoading){
+        return <View style={styles.spinner}>
+            <ActivityIndicator size="large" color={Colors.primary} />
+        </View>
+    }
 
     // console.log(products);
     return (
@@ -74,4 +86,10 @@ const ProductsOverviewScreen = (props) => {
 
 export default ProductsOverviewScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    spinner:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})

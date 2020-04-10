@@ -75,7 +75,7 @@ const EditProductScreen = props => {
           prodId,
           formState.inputValues.title,
           formState.inputValues.imageUrl,
-          formState.inputValues.description
+          formState.inputValues.description,
         )
       );
     } else {
@@ -172,25 +172,25 @@ const EditProductScreen = props => {
   );
 };
 
-  EditProductScreen.navigationOptions = navData => {
-    const submitFn = navData.navigation.getParam('submit');
-    return {
-      headerTitle: navData.navigation.getParam('productId')
-        ? 'Edit Product'
-        : 'Add Product',
-      headerRight:() =>(
-        <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item
-            title="Save"
-            iconName={
-              Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
-            }
-            onPress={submitFn}
-          />
-        </HeaderButtons>
-      )
-    };
+EditProductScreen.navigationOptions = navData => {
+  const submitFn = navData.navigation.getParam('submit');
+  return {
+    headerTitle: navData.navigation.getParam('productId')
+      ? 'Edit Product'
+      : 'Add Product',
+    headerRight: () =>(
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Save"
+          iconName={
+            Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
+          }
+          onPress={submitFn}
+        />
+      </HeaderButtons>
+    )
   };
+};
 
 const styles = StyleSheet.create({
   form: {

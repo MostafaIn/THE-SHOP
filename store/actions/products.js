@@ -3,10 +3,15 @@ import { DELETE_PRODUCT, CREATE_PRODUCT, UPDATE_PRODUCT, SET_PRODUCT } from './t
 import Product from '../../models/product';
 
 export const deleteProduct = productId =>{
-    return{
-        type:DELETE_PRODUCT,
-        pid: productId
-    }
+    return async dispatch =>{
+        await fetch(`https://shop-rn-ed880.firebaseio.com/products/${productId}.json`,{
+            method:'DELETE',
+        });
+        dispatch({
+            type:DELETE_PRODUCT,
+            pid: productId
+        });
+    };
 };
 
 export const createProduct = (title, imageUrl, description, price) =>{
@@ -41,14 +46,28 @@ export const createProduct = (title, imageUrl, description, price) =>{
 };
 
 export const updateProduct = (id, title, imageUrl, description) =>{
-    return{
-        type: UPDATE_PRODUCT,
-        pid: id,
-        productData:{
-            title,
-            imageUrl,
-            description
-        }
+    return async dispatch =>{
+        fetch(`https://shop-rn-ed880.firebaseio.com/products/${id}.json`,{
+            method:'PATCH',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                imageUrl,
+                description
+            })
+        });
+
+        dispatch({
+            type: UPDATE_PRODUCT,
+            pid: id,
+            productData:{
+                title,
+                imageUrl,
+                description
+            }
+        })
     }
 };
 
