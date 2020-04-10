@@ -9,17 +9,18 @@ export const deleteProduct = productId =>{
 
 export const createProduct = (title, imageUrl, description, price) =>{
     return{
-        type: CREATE_PRODUCT,
-        productData:{
-            title,
-            imageUrl,
-            description,
-            price
+            type: CREATE_PRODUCT,
+            productData:{
+                title,
+                imageUrl,
+                description,
+                price
+            }
         }
-    }
 };
 
 export const updateProduct = (id, title, imageUrl, description) =>{
+    console.log('UPDATED', description)
     return{
         type: UPDATE_PRODUCT,
         pid: id,

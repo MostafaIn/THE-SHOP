@@ -75,7 +75,7 @@ const EditProductScreen = props => {
           prodId,
           formState.inputValues.title,
           formState.inputValues.imageUrl,
-          formState.inputValues.description,
+          formState.inputValues.description
         )
       );
     } else {

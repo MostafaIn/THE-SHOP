@@ -4,14 +4,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
 
 import rootReducer from './store/reducers';
 
 import ShopNavigator from './navigation/ShopNavigator';
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer,applyMiddleware(thunk))
 
 const fetchFonts = () =>{
   return Font.loadAsync({
