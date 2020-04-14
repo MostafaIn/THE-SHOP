@@ -1,5 +1,5 @@
-import React,{ useState, useCallback, useReducer } from 'react'
-import { StyleSheet, View, Button, ActivityIndicator } from 'react-native'
+import React,{ useState, useCallback, useReducer, useEffect } from 'react'
+import { StyleSheet, View, Button, ActivityIndicator, Alert } from 'react-native'
 
 import Input from '../UI/Input'
 
@@ -36,8 +36,15 @@ const formReducer = (state, action) => {
 
 const Signup = () => {
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState()
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      if(error){
+        Alert.alert('some error occurred!', error, [{text: 'Okay'}]);
+      }
+    }, [error])
 
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
@@ -55,12 +62,17 @@ const Signup = () => {
         formIsValid: false
       });
 
-    const authHandler = async () =>{
+    const signupHandler = async () =>{
+        setError(null)
         setIsLoading(true);
-        await dispatch(authActions.signUp(
-                formState.inputValues.email,
-                formState.inputValues.password
-            ));
+        try {
+          await dispatch(authActions.signUp(
+                  formState.inputValues.email,
+                  formState.inputValues.password
+              ));
+        } catch (err) {
+          setError(err.message)
+        }
         setIsLoading(false);
     };
 
@@ -134,7 +146,7 @@ const Signup = () => {
                     <Button 
                         title="Sign up" 
                         color={Colors.primary} 
-                        onPress={authHandler} 
+                        onPress={signupHandler} 
                     />
                 )}
             </View>

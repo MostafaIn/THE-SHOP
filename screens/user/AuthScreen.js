@@ -1,5 +1,5 @@
 import React,{ useState, useReducer, useCallback} from 'react'
-import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Button, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Button } from 'react-native'
 
 import { useDispatch } from 'react-redux'
 

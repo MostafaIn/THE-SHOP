@@ -1,5 +1,5 @@
-import React,{ useState, useCallback, useReducer } from 'react'
-import { StyleSheet, View, Button, ActivityIndicator } from 'react-native'
+import React,{ useState, useCallback, useReducer, useEffect } from 'react'
+import { StyleSheet, View, Button, ActivityIndicator, Alert } from 'react-native'
 
 import Input from '../UI/Input'
 
@@ -36,8 +36,15 @@ const formReducer = (state, action) => {
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState()
 
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+      if(error){
+        Alert.alert('An Error Occurred!', error, [{ text: 'Okay'}]);
+      }
+    },[error]);
 
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
@@ -51,12 +58,18 @@ const Login = () => {
         formIsValid: false
       });
 
-    const authHandler = async () =>{
+    const loginHandler = async () =>{
+        setError(null);
         setIsLoading(true);
-        await dispatch(authActions.logIn(
-                formState.inputValues.email,
-                formState.inputValues.password
-            ));
+        try {
+          await dispatch(authActions.logIn(
+                  formState.inputValues.email,
+                  formState.inputValues.password
+              ));
+        } catch (err) {
+          // console.log('login error',err.messsage)
+          setError(err.messsage)
+        }
         setIsLoading(false);
     };
 
@@ -71,7 +84,7 @@ const Login = () => {
         },
         [dispatchFormState]
       );
-        
+    //  console.log('login error: ', error)   
     return (
         <View>
             <Input
@@ -106,7 +119,7 @@ const Login = () => {
                     <Button 
                         title="Log in" 
                         color={Colors.primary} 
-                        onPress={authHandler} 
+                        onPress={loginHandler} 
                     />
                 )}
             </View>
