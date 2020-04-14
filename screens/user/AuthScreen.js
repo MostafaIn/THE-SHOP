@@ -16,7 +16,7 @@ import Login from '../../components/auth/Login'
 import Signup from '../../components/auth/Signup'
 
 
-const AuthScreen = () => {
+const AuthScreen = (props) => {
     const [isSignup, setIsSignup] = useState(false);    
 
     return (
@@ -28,7 +28,7 @@ const AuthScreen = () => {
             <LinearGradient colors={['#6fb', '#61e']} style={styles.gradient}>
             <Card style={styles.authContainer}>
                 <ScrollView>
-                    {!isSignup ? <Login /> : <Signup />}
+                    {!isSignup ? <Login navigation={props.navigation} /> : <Signup />}
                     
                     <View style={styles.btnContainer}>
                     <Button 

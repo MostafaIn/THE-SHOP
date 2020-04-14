@@ -34,7 +34,7 @@ const formReducer = (state, action) => {
   };
 
 
-const Login = () => {
+const Login = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState()
 
@@ -66,11 +66,12 @@ const Login = () => {
                   formState.inputValues.email,
                   formState.inputValues.password
               ));
+           props.navigation.navigate('Shop')
         } catch (err) {
           // console.log('login error',err.messsage)
           setError(err.messsage)
+          setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     const inputChangeHandler = useCallback(
@@ -84,7 +85,7 @@ const Login = () => {
         },
         [dispatchFormState]
       );
-    //  console.log('login error: ', error)   
+    //  console.log('login: ', props.navigation.navigate())   
     return (
         <View>
             <Input
