@@ -10,5 +10,5 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 export const SET_PRODUCT = 'SET_PRODUCT';
 
-export const SIGNUP = 'SIGN_UP';
+export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';

@@ -31,7 +31,9 @@ export const signUp = (email, password) =>{
             const resData = await response.json();
             console.log('sign up',resData);
         dispatch({
-            type: SIGNUP
+            type: SIGNUP,
+            token: resData.idToken,
+            userId: resData.localId
         })
     }  
 };
@@ -62,11 +64,13 @@ export const logIn = (email, password) =>{
             //    console.log('log in',msg);
                throw new Error(msg)
             }
-            
+
             const resData = await response.json();
             console.log('sign up',resData);
         dispatch({
-            type: LOGIN
+            type: LOGIN,
+            token: resData.isToken,
+            userId: resData.localId
         })
     }
     

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Button } from
 
 import { useDispatch } from 'react-redux'
 
-import * as authActions from '../../store/actions/Auth'
+import * as authActions from '../../store/actions/auth'
 
 import { LinearGradient } from 'expo-linear-gradient'
 

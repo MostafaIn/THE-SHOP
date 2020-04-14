@@ -6,7 +6,7 @@ import Input from '../UI/Input'
 import Colors from '../../constants/colors'
 
 import { useDispatch } from 'react-redux'
-import * as authActions from '../../store/actions/Auth'
+import * as authActions from '../../store/actions/auth'
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 

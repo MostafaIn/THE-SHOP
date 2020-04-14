@@ -3,9 +3,10 @@ import { ADD_ORDER, SET_ORDERS } from './types';
 import Order from '../../models/order'
 
 export const fetchOrders = () =>{
-    return async dispatch =>{
+    return async (dispatch, getState) =>{
         // any async code !!!
-        const response = await fetch('https://shop-rn-ed880.firebaseio.com/orders/u1.json');
+        // const token = getState().auth.token;
+        const response = await fetch(`https://shop-rn-ed880.firebaseio.com/orders/u1.json`);
 
         const resData = await response.json();
         const loadedOrders = [];
@@ -26,9 +27,10 @@ export const fetchOrders = () =>{
 };
 
 export const addOrder = ( cartItems, totalAmount) =>{
-    return async dispatch =>{
+    return async (dispatch, getState) =>{
+        const token = getState().auth.token;
         const date = new Date();
-        const response = await fetch('https://shop-rn-ed880.firebaseio.com/orders/u1.json',{
+        const response = await fetch(`https://shop-rn-ed880.firebaseio.com/orders/u1.json?auth=${token}`,{
             method:'POST',
             headers:{
                 'Content-Type' : 'application/json'

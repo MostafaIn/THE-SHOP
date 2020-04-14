@@ -44,6 +44,7 @@ const EditProductScreen = props => {
   const editedProduct = useSelector(state =>
     state.products.userProducts.find(prod => prod.id === prodId)
   );
+  
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -106,7 +107,7 @@ const EditProductScreen = props => {
     },
     [dispatchFormState]
   );
-
+    // console.log('editedProduct',editedProduct)
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
