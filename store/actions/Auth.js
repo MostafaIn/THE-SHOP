@@ -102,6 +102,7 @@ const saveDataToStorage = (token, userId, expirationDate) =>{
 };
 
 export const logout = () =>{
+    AsyncStorage.removeItem('userData')
     return{
         type: LOGOUT
     }
