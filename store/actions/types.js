@@ -12,3 +12,4 @@ export const SET_PRODUCT = 'SET_PRODUCT';
 
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
+export const AUTHENTICATE = 'AUTHENTICATE';
