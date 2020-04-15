@@ -66,10 +66,10 @@ export const logIn = (email, password) =>{
             }
 
             const resData = await response.json();
-            console.log('sign up',resData);
+            console.log('log in',resData);
         dispatch({
             type: LOGIN,
-            token: resData.isToken,
+            token: resData.idToken,
             userId: resData.localId
         })
     }

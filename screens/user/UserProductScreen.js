@@ -13,7 +13,7 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import Colors from '../../constants/colors';
 
 const UserProductScreen = (props) => {
-    const userProduct = useSelector(state => state.products.userProducts);
+    const userProducts = useSelector(state => state.products.userProducts);
 
     const dispatch = useDispatch();
 
@@ -30,9 +30,16 @@ const UserProductScreen = (props) => {
         ])
       };
 
+    if(userProducts.length === 0){
+        return <View style={styles.noProduct}>
+            <Text>No Products found!</Text>
+            <Text> Start creating some </Text>
+        </View>
+    }
+
     return (
         <FlatList
-            data={userProduct}
+            data={userProducts}
             keyExtractor={item => item.id}
             renderItem={itemData =>(
                  <ProductItem
@@ -78,4 +85,10 @@ const UserProductScreen = (props) => {
 
 export default UserProductScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    noProduct:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})

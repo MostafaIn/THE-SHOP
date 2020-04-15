@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize:18,
         fontFamily:'lobster',
-        marginVertical: 4
+        margin: 4
     },
     price:{
         fontSize:14,

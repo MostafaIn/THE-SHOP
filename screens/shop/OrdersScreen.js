@@ -18,6 +18,14 @@ const OrdersScreen = (props) => {
     useEffect(() => {
        dispatch(ordersActions.fetchOrders());
     }, [dispatch])
+
+    if(orders.length === 0){
+        return <View style={styles.noProduct}>
+            <Text>No Orders found!</Text>
+            <Text> Let's make order some products ? </Text>
+        </View>
+    }
+
     return (
         <FlatList
             data={orders}
@@ -46,4 +54,10 @@ const OrdersScreen = (props) => {
 
 export default OrdersScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    noProduct:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})
