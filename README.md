@@ -6,10 +6,8 @@
 
 #### DEMO
 
-![demo](s1.png)
-![demo](s2.png)
-![demo](s3.png)
-![demo](s4.png)
+![demo](demo.png)
+
 
 
 ## Technologies are used in this App:
@@ -18,8 +16,8 @@
 
 
  ## INSTALL 
-    $ git clone https://github.com/MostafaIn/THE-SHOP-React-Native-App-.git
-    $ cd THE-SHOP-React-Native-App-
+    $ git clone https://github.com/MostafaIn/THE-SHOP.git
+    $ cd THE-SHOP
     $ npm install
 
 ## Start & watch
